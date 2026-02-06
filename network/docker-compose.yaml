@@ -1,0 +1,185 @@
+version: "3.8"
+
+services:
+  # -----------------------------
+  # BESU VALIDATOR 1 (Gateway RPC)
+  # -----------------------------
+  node1:
+    image: besu-image-local:1.0
+    container_name: node1
+    command: >
+      --data-path=/opt/besu/data
+      --genesis-file=/opt/besu/genesis.json
+      --profile=ENTERPRISE
+      --data-storage-format=BONSAI
+      --tx-pool-min-gas-price=0
+      --min-gas-price=0
+      --tx-pool-limit-by-account-percentage=1
+      --tx-pool-max-size=4096
+      --p2p-port=30303
+      --rpc-http-enabled
+      --rpc-http-host=0.0.0.0
+      --rpc-http-port=8545
+      --rpc-http-cors-origins=all
+      --host-allowlist=*
+      --rpc-ws-enabled=true
+      --rpc-ws-host=0.0.0.0
+      --rpc-ws-port=8645
+      --rpc-http-api=EEA,WEB3,ETH,NET,TRACE,DEBUG,ADMIN,TXPOOL,PERM,QBFT
+      --rpc-ws-api=EEA,WEB3,ETH,NET,TRACE,DEBUG,ADMIN,TXPOOL,PERM,QBFT
+      --metrics-enabled
+      --metrics-port=9545
+      --permissions-accounts-config-file-enabled
+      --permissions-nodes-config-file-enabled
+    volumes:
+      - ./genesis.json:/opt/besu/genesis.json
+      - ./Permissioned-Network/config/static-nodes.json:/opt/besu/data/static-nodes.json
+      - ./Permissioned-Network/config/permissions_config.toml:/opt/besu/data/permissions_config.toml
+      - ./Permissioned-Network/Node-1/data:/opt/besu/data
+    ports:
+      - "8545:8545"
+      - "30303:30303"
+      - "8645:8645"
+      - "9545:9545"
+    networks:
+      besu-network:
+        ipv4_address: 172.31.0.2
+
+  # -----------------------------
+  # BESU VALIDATOR 2
+  # -----------------------------
+  node2:
+    image: besu-image-local:1.0
+    container_name: node2
+    command: >
+      --data-path=/opt/besu/data
+      --genesis-file=/opt/besu/genesis.json
+      --profile=ENTERPRISE
+      --data-storage-format=BONSAI
+      --tx-pool-min-gas-price=0
+      --min-gas-price=0
+      --tx-pool-limit-by-account-percentage=1
+      --tx-pool-max-size=4096
+      --p2p-port=30304
+      --rpc-http-enabled
+      --rpc-http-host=0.0.0.0
+      --rpc-http-port=8546
+      --rpc-http-cors-origins=all
+      --host-allowlist=*
+      --rpc-http-api=EEA,WEB3,ETH,NET,TRACE,DEBUG,ADMIN,TXPOOL,PERM,QBFT
+      --rpc-ws-enabled=true
+      --rpc-ws-host=0.0.0.0
+      --rpc-ws-port=8646
+      --rpc-ws-api=EEA,WEB3,ETH,NET,TRACE,DEBUG,ADMIN,TXPOOL,PERM,QBFT
+      --metrics-enabled
+      --metrics-port=9546
+      --permissions-accounts-config-file-enabled
+      --permissions-nodes-config-file-enabled
+    volumes:
+      - ./genesis.json:/opt/besu/genesis.json
+      - ./Permissioned-Network/config/static-nodes.json:/opt/besu/data/static-nodes.json
+      - ./Permissioned-Network/config/permissions_config.toml:/opt/besu/data/permissions_config.toml
+      - ./Permissioned-Network/Node-2/data:/opt/besu/data
+    ports:
+      - "8546:8546"
+      - "30304:30304"
+      - "8646:8646"
+      - "9546:9546"
+    networks:
+      besu-network:
+        ipv4_address: 172.31.0.3
+
+  # -----------------------------
+  # BESU VALIDATOR 3
+  # -----------------------------
+  node3:
+    image: besu-image-local:1.0
+    container_name: node3
+    command: >
+      --data-path=/opt/besu/data
+      --genesis-file=/opt/besu/genesis.json
+      --profile=ENTERPRISE
+      --data-storage-format=BONSAI
+      --tx-pool-min-gas-price=0
+      --min-gas-price=0
+      --tx-pool-limit-by-account-percentage=1
+      --tx-pool-max-size=4096
+      --p2p-port=30305
+      --rpc-http-enabled
+      --rpc-http-host=0.0.0.0
+      --rpc-http-port=8547
+      --rpc-http-cors-origins=all
+      --host-allowlist=*
+      --rpc-http-api=EEA,WEB3,ETH,NET,TRACE,DEBUG,ADMIN,TXPOOL,PERM,QBFT
+      --rpc-ws-enabled=true
+      --rpc-ws-host=0.0.0.0
+      --rpc-ws-port=8647
+      --rpc-ws-api=EEA,WEB3,ETH,NET,TRACE,DEBUG,ADMIN,TXPOOL,PERM,QBFT
+      --metrics-enabled
+      --metrics-port=9547
+      --permissions-accounts-config-file-enabled
+      --permissions-nodes-config-file-enabled
+    volumes:
+      - ./genesis.json:/opt/besu/genesis.json
+      - ./Permissioned-Network/config/static-nodes.json:/opt/besu/data/static-nodes.json
+      - ./Permissioned-Network/config/permissions_config.toml:/opt/besu/data/permissions_config.toml
+      - ./Permissioned-Network/Node-3/data:/opt/besu/data
+    ports:
+      - "8547:8547"
+      - "30305:30305"
+      - "8647:8647"
+      - "9547:9547"
+    networks:
+      besu-network:
+        ipv4_address: 172.31.0.4
+
+  # -----------------------------
+  # BESU VALIDATOR 4
+  # -----------------------------
+  node4:
+    image: besu-image-local:1.0
+    container_name: node4
+    command: >
+      --data-path=/opt/besu/data
+      --genesis-file=/opt/besu/genesis.json
+      --profile=ENTERPRISE
+      --data-storage-format=BONSAI
+      --tx-pool-min-gas-price=0
+      --min-gas-price=0
+      --tx-pool-limit-by-account-percentage=1
+      --tx-pool-max-size=4096
+      --p2p-port=30306
+      --rpc-http-enabled
+      --rpc-http-host=0.0.0.0
+      --rpc-http-port=8548
+      --rpc-http-cors-origins=all
+      --host-allowlist=*
+      --rpc-http-api=EEA,WEB3,ETH,NET,TRACE,DEBUG,ADMIN,TXPOOL,PERM,QBFT
+      --rpc-ws-enabled=true
+      --rpc-ws-host=0.0.0.0
+      --rpc-ws-port=8648
+      --rpc-ws-api=EEA,WEB3,ETH,NET,TRACE,DEBUG,ADMIN,TXPOOL,PERM,QBFT
+      --metrics-enabled
+      --metrics-port=9548
+      --permissions-accounts-config-file-enabled
+      --permissions-nodes-config-file-enabled
+    volumes:
+      - ./genesis.json:/opt/besu/genesis.json
+      - ./Permissioned-Network/config/static-nodes.json:/opt/besu/data/static-nodes.json
+      - ./Permissioned-Network/config/permissions_config.toml:/opt/besu/data/permissions_config.toml
+      - ./Permissioned-Network/Node-4/data:/opt/besu/data
+    ports:
+      - "8548:8548"
+      - "30306:30306"
+      - "8648:8648"
+      - "9548:9548"
+    networks:
+      besu-network:
+        ipv4_address: 172.31.0.5
+
+networks:
+  besu-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.31.0.0/16

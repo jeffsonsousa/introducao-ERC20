@@ -1,0 +1,11 @@
+network/networkFiles/*
+network/*.tar.gz 
+network/besu-*/
+network/jdk-*/
+network/*.jfr
+network/genesis.json
+network/Permissioned-Network/Node-*/
+
+token-tests/.env
+token-tests/package-lock.json
+token-tests/node_modules/*
